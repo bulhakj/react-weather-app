@@ -1,4 +1,5 @@
 import React from 'react';
+import SearchBar from "../components/LandingPage/SearchBar"
 
 interface IProps {
 
@@ -6,7 +7,9 @@ interface IProps {
 
 const LandingPage: React.FC<IProps> = (props: IProps) => {
     return (
-        <div>Hello, this is landing page</div>
+        <>
+            <SearchBar/>
+        </>
     )
 }
 
