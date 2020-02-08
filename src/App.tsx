@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import LoginPage from "./containers/LandingPage"
+import LandingPage from "./containers/LandingPage"
 import { ThemeProvider } from "styled-components"
 import { theme } from "./themes/themes"
 import styled from "styled-components"
@@ -14,7 +14,7 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
         <Background>
-          <LoginPage/>
+          <LandingPage/>
         </Background>
     </ThemeProvider>
   );
