@@ -1,10 +1,10 @@
-import React, { SyntheticEvent } from 'react';
+import React, { useState, ChangeEvent } from 'react';
 import { fade, makeStyles, Theme, createStyles } from '@material-ui/core/';
 import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@material-ui/core/InputBase';
 
 interface IProps {
-    handleGetInputValue: (e?: SyntheticEvent) => void;
+    handleGetInputValue: (e?: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => void;
 }
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -47,7 +47,7 @@ const useStyles = makeStyles((theme: Theme) =>
 export const SearchBar: React.FC<IProps> = (props) => {
     const classes = useStyles()
 
-    const handleUpdateTextFromInput = (e: SyntheticEvent) => {
+    const handleUpdateTextFromInput = (e: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
         props.handleGetInputValue(e)
     }
 
@@ -58,7 +58,10 @@ export const SearchBar: React.FC<IProps> = (props) => {
             </div>
             <InputBase
                 onChange={
-                    (e) => handleUpdateTextFromInput(e)
+                    (e) => {
+                        handleUpdateTextFromInput(e)
+                        console.log(e.target.value)
+                    }
                 }
                 placeholder="Search…"
                 classes={{

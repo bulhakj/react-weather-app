@@ -1,4 +1,4 @@
-import React, { useEffect, useState, SyntheticEvent } from 'react';
+import React, { useEffect, useState, ChangeEvent } from 'react';
 import SearchBar from "../components/LandingPage/SearchBar"
 import { Box, Typography } from '@material-ui/core';
 import styled from "styled-components"
@@ -24,9 +24,15 @@ interface IProps {
 const LandingPage: React.FC<IProps> = (props: IProps) => {
 
     const [weatherData, setWeatherData] = useState([])
+    const [city, setCity] = useState()
 
-    const handleGetInputValue = (e?: SyntheticEvent) => {
-        console.log(e?.currentTarget)
+    const handleGetInputValue = (e?: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+        let typedCity = e?.target.value
+        setCity(typedCity)
+    }
+
+    const handleFetchData = () => {
+        console.log("request for data")
     }
 
     return (
@@ -36,7 +42,7 @@ const LandingPage: React.FC<IProps> = (props: IProps) => {
                     Check forecast for your city
                 </HeaderText>
                 <SearchBar handleGetInputValue={handleGetInputValue}/>
-                <button>search</button>
+                <button onClick={handleFetchData}>search</button>
             </SearchBarWrapper>
         </LandingPageWrapper>
     )
