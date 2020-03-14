@@ -1,7 +1,8 @@
 import React, { useEffect, useState, ChangeEvent } from 'react';
 import SearchBar from "../components/LandingPage/SearchBar"
-import { Box, Typography } from '@material-ui/core';
+import { Button, Box, Typography } from '@material-ui/core';
 import styled from "styled-components"
+import axios from "axios"
 
 const LandingPageWrapper = styled.div`
     display: flex;
@@ -15,6 +16,9 @@ const HeaderText = styled(Typography)`
 
 const SearchBarWrapper = styled(Box)`
     width: 60%;
+`
+const CustomButton = styled(Button)`
+    margin-top: 2rem !important;
 `
 
 interface IProps {
@@ -32,7 +36,10 @@ const LandingPage: React.FC<IProps> = (props: IProps) => {
     }
 
     const handleFetchData = () => {
-        console.log("request for data")
+        axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${process.env.REACT_APP_API_KEY}`)
+            .then(response => {
+                console.log(response)
+            })
     }
 
     return (
@@ -42,7 +49,7 @@ const LandingPage: React.FC<IProps> = (props: IProps) => {
                     Check forecast for your city
                 </HeaderText>
                 <SearchBar handleGetInputValue={handleGetInputValue}/>
-                <button onClick={handleFetchData}>search</button>
+                <CustomButton variant="contained" onClick={handleFetchData}>Search</CustomButton>
             </SearchBarWrapper>
         </LandingPageWrapper>
     )
