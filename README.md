@@ -3,4 +3,4 @@
 - Typescript
 - Styled-components
 - Redux(soon)
-- Weather API - OpenWeatherMap(soon)
+- Weather API - OpenWeatherMap
